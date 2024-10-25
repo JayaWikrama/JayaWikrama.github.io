@@ -15,6 +15,8 @@
 
     <!-- Required CSS files -->
     <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/style-gifts.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Favicon -->
     <link rel="icon" href="img/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -113,7 +115,7 @@
                     </div>
                     <!-- //.align-items-center -->
 
-                    <p class="fs-5 mb-5 text-center text-muted">Merupakan suatu kehormatan bagi kami jika teman-teman dan keluarga berkenan hadir di acara pernikahan dan resepsi kami.</p>
+                    <p class="fs-5 mb-5 text-center text-muted">Merupakan suatu kehormatan bagi kami jika teman-teman dan keluarga berkenan hadir di acara resepsi pernikahan kami.</p>
 
                     <!-- Card Decoration -->
                     <img src="img/card-top.png" alt="" class="position-absolute rounded-top start-0 top-0 w-100">
@@ -301,7 +303,6 @@
     </section>
     <!-- End: The Wedding Event Section -->
 
-
     <!-- Start: How to Get There Modal -->
     <div id="how-to-get-there-modal" class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -318,28 +319,8 @@
                     <span class="section-divider divider-secondary mb-4"></span>
 
                     <div class="row position-relative z-3">
-                        <div class="col-lg-6 mb-5 mb-lg-0">
-                            <div class="mb-4 text-center">
-                                <h4 class="font-alt fs-5 fw-bold text-uppercase">The Ceremony</h4>
-                                <p class="font-alt fst-italic text-muted">Desa Kertaraharjo</p>
-                                <img src="images/the-wedding-event-modal-1.jpg" alt="" class="img-fluid rounded">
-                            </div>
-                            <!-- //.mb-4 -->
 
-                            <div class="mb-4">
-                                <h6 class="fw-bold ls-1 text-uppercase">Dari Arah Wotu</h6>
-                                <hr class="border-primary my-2 sep-line">
-                                <p class="m-0">Bagi tamu yang datang dari arah Wotu, silakan arahkan kendaraan ke timur melalui Jl. Poros Masamba - Tomoni/Jl. Trans Sulawesi/Wotu - Tarengge sejauh 3,7 km, kemudian belok kanan ke Jl. Poros Wotu - Malili dan lanjutkan sekitar 5,1 km. Setelah itu, belok kiri dan teruskan sejauh 4,5 km sebelum belok kanan menuju lokasi acara, yang akan berada di sebelah kiri.</p>
-                            </div>
-                            <!-- //.mb-4 -->
-
-                            <h6 class="fw-bold ls-1 text-uppercase">Dari Arah Mangkutana</h6>
-                            <hr class="border-primary my-2 sep-line">
-                            <p class="m-0">Sementara bagi tamu yang datang dari arah Mangkutana, ikuti Jl. Trans Sulawesi hingga sampai pada pertigaan Jl. Poros Mulyasri. Belok kiri ke Jl. Poros Mulyasri dan lanjutkan 6,1 km, lalu belok kanan sejauh 650 m, kemudian belok kiri, dan lanjut 270 m. Terakhir, belok kanan sejauh 300 m sebelum belok kiri menuju lokasi tujuan.</p>
-                        </div>
-                        <!-- //.col-lg-6 -->
-
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="mb-4 text-center">
                                 <h4 class="font-alt fs-5 fw-bold text-uppercase">The Reception</h4>
                                 <p class="font-alt fst-italic text-muted">Desa Kertaraharjo</p>
@@ -378,7 +359,6 @@
         <!-- //.modal-dialog -->
     </div>
     <!-- End: How to Get There Modal -->
-
 
     <!-- Start: Love Story Section -->
     <section id="love-story">
@@ -693,10 +673,36 @@
                     <h3 class="font-alt fs-4 fw-bold mt-3 position-relative text-uppercase z-3">Wedding Gifts</h3>
                     <hr class="border-secondary sep-line">
                     <p>Kalian tidak perlu membawa hadiah apa pun &mdash; kehadiran kalian di hari istimewa kami sudah lebih dari cukup! Namun, jika ingin berbagi kebahagiaan dengan cara lain, kami akan sangat menghargai segala bentuk perhatian untuk membantu kami memulai kehidupan rumah tangga bersama.</p>
-                    <p>Silakan kunjungi <a href="#">Honeyfund.com</a> untuk informasi lebih lanjut. Terima kasih atas doa dan dukungannya.</p>
-                    <p class="font-alt fs-5 fst-italic mb-4">"Hadiah terindah dalam hidup adalah persahabatan, dan kami merasa sangat beruntung telah menerimanya dari kalian semua."</p>
-                    <span class="section-divider divider-secondary mb-4"></span>
 
+                    <div class="container-gifts">
+                        <div class="cashless-gifts">
+                            <img src="img/icon-BNI.png" alt="">
+                            <h4 class="font-alt fs-6 fw-bold mt-3 position-relative z-3">No. Rekening</h4>
+                            <input type="text" id="rekening1" value="000 000 2321" readonly>
+                            <p class="font-alt fs-8 mt-3 position-relative z-3">a.n Jaya Wikrama</p>
+                            <div class="bcopy">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#copy-to-cilpboard" onclick="copyText('Nomor Rekening', 'rekening1', 'BNI', 'Jaya Wikrama')" class="btn fs-9 ls-1 me-sm-3 rounded-1">
+                                    <i class="icopy fas fa-copy"></i>
+                                    Salin
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cashless-gifts">
+                            <img src="img/icon-BRI.png" alt="">
+                            <h4 class="font-alt fs-6 fw-bold mt-3 position-relative z-3">No. Rekening</h4>
+                            <input type="text" id="rekening2" value="111 000 4329" readonly>
+                            <p class="font-alt fs-8 mt-3 position-relative z-3">a.n Sri Darma Yanti</p>
+                            <div class="bcopy">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#copy-to-cilpboard" onclick="copyText('Nomor Rekening', 'rekening2', 'BRI', 'Sri Darma Yanti')" class="btn fs-9 ls-1 me-sm-3 rounded-1">
+                                    <i class="icopy fas fa-copy"></i>
+                                    Salin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="section-divider divider-secondary mb-4"></span>
                     <!-- Card Decoration -->
                     <img src="img/card-top.png" alt="" class="position-absolute rounded-top start-0 top-0 w-100">
                     <img src="img/card-bottom.png" alt="" class="bottom-0 position-absolute rounded-bottom start-0 w-100">
@@ -709,6 +715,49 @@
     </section>
     <!-- End: Wedding Gifts Section -->
 
+    <!-- Start: Gift Copy Modal -->
+    <div id="copy-to-cilpboard" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded">
+                <div class="modal-header justify-content-center py-4 z-3">
+                    <h3 class="modal-title fs-4 font-alt fw-bold text-uppercase">Thanks For Your Gifts</h3>
+                    <button type="button" class="end-0 fs-2 me-3 position-absolute" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!-- //.modal-header -->
+                <div class="modal-body pb-sm-5 pt-0 px-lg-4 z-3">
+                    <span class="section-divider divider-secondary mb-4"></span>
+                    <div class="row position-relative z-3">
+                        <div class="col-lg-12">
+                            <div class="mb-4 text-center">
+                                <h4 id="bankType" class="font-alt fs-5 fw-bold text-uppercase">Nomor Rekening</h4>
+                                <p id="nomorRekening" class="font-alt fst-italic text-muted"></p>
+                                <p id="atasNama" class="font-alt fst-italic text-muted"></p>
+                                <h5 class="font-alt fs-6 fw-bold">Telah Berhasil Disalin</h5>
+                                <h4 class="font-alt fs-5 fw-bold text-uppercase">Terima Kasih</h4>
+                            </div>
+                        </div>
+                        <!-- //.col-lg-6 -->
+                    </div>
+                    <!-- //.row -->
+                </div>
+                <!-- //.modal-body -->
+
+                <div class="modal-footer d-sm-none z-3">
+                    <button class="btn fs-9 rounded-1 w-100" data-bs-dismiss="modal" aria-label="Close">Okay, I get it!</button>
+                </div>
+                <!-- //.modal-footer -->
+
+                <!-- Card Decoration -->
+                <img src="img/card-top-modal.png" alt="" class="position-absolute rounded-top start-0 top-0 w-100">
+                <img src="img/card-bottom-modal.png" alt="" class="bottom-0 position-absolute rounded-bottom start-0 w-100">
+            </div>
+            <!-- //.modal-content -->
+        </div>
+        <!-- //.modal-dialog -->
+    </div>
+    <!-- End: Gift Copy Modal -->
 
     <!-- Start: RSVP Section -->
     <section id="rsvp">
@@ -819,6 +868,21 @@
     </footer>
     <!-- End: Footer -->
 
+    <!-- Internal Script -->
+
+    <script>
+        function copyText(detailObj, textID, bankType, atasNama) {
+            const textInput = document.getElementById(textID);
+            textInput.select();
+            document.execCommand("copy");
+            const ebankType = document.getElementById("bankType");
+            ebankType.textContent = "NOMOR REKENING " + bankType;
+            const nomorRekening = document.getElementById("nomorRekening");
+            nomorRekening.textContent = textInput.value;
+            const eatasNama = document.getElementById("atasNama");
+            eatasNama.textContent = "Atas Nama " + atasNama;
+        }
+    </script>
 
     <!-- Required JS files -->
     <script src="js/script.min.js"></script>

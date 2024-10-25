@@ -1,0 +1,44 @@
+.container-gifts {
+    padding-top: 20px;
+    display: flex;
+    gap: 10px; /* Jarak antar div */
+}
+
+.cashless-gifts {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    max-width: 150px;
+    margin: auto;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.cashless-gifts img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+}
+
+.cashless-gifts h4, .cashless-gifts p, .cashless-gifts input {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    border: none;
+}
+
+.bcopy {
+    margin-left: 12%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.icopy {
+    padding-right: 5px;
+}

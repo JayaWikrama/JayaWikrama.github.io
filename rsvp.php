@@ -1,7 +1,7 @@
 <?php
 
 // Replace with your email 
-$mail_to = 'youremail@yourdomain.com';
+$mail_to = 'jayawikrama89@gmail.com';
 
 if (isset($_POST['rsvp_name']) && isset($_POST['rsvp_email']) && filter_var($_POST['rsvp_email'], FILTER_VALIDATE_EMAIL) && isset($_POST['rsvp_events']) && isset($_POST['rsvp_guests'])) {
     // Collect POST data from form
