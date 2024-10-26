@@ -1,125 +1,92 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+import { getDatabase, onValue, onChildAdded, ref, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA1rZcY5a-ZVCSkx8OHZfUjiap9m9HORfc",
+  authDomain: "wedding-asset.firebaseapp.com",
+  databaseURL: "https://wedding-asset-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "wedding-asset",
+  storageBucket: "wedding-asset.appspot.com",
+  messagingSenderId: "326774812708",
+  appId: "1:326774812708:web:0ae902bbddba303a3d28b1",
+  measurementId: "G-7YZGCJP12D"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
+const messagesForCouple = ref(db, "messages-for-couple");
 let messageCount = 0;
-let accessToken = "";
 
-async function login() {
-    const url = "https://103.165.135.133:4432/getAccessToken";
-    const credentials = {
-        username: "pmsv-developer",
-        password: "pmsv-developer-me"
-    };
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(credentials),
-            mode: 'cors',
-            credentials: 'include'
-        });
-        const result = await response.json();
-        
-        if (result.status === "success") {
-            accessToken = result.token;
-            console.log("Login successful. Token:", accessToken);
-            loadMessages();
-        } else {
-            console.error("Login failed:", result);
-        }
-    } catch (error) {
-        console.error("Error during login:", error);
-    }
+function generateUUID() {
+    const timestamp = Date.now().toString(16);
+    const randomPart = Math.random().toString(16).substring(2, 10);
+    return `${timestamp}-${randomPart}`;
 }
 
-async function sendMessage(name, message) {
-    const url = "https://103.165.135.133:4432/insertJson?srjy_msg";
-    const data = {
-        name: name,
-        message: message,
-        dtime: new Date().toISOString().slice(0, 19).replace("T", " "),
-        secret: "none"
-    };
+export function sendMessage() {
+    const userName = document.getElementById("name").value.trim();
+    const userMessage = document.getElementById("message").value.trim();
+    const reference = ref(db, "messages-for-couple/" + generateUUID());
 
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": accessToken
-            },
-            body: JSON.stringify(data),
-            mode: 'cors',
-            credentials: 'include'
-        });
-        const result = await response.json();
-
-        if (result.status === "success") {
-            console.log("Message sent successfully:", result);
-            loadMessages();
-        } else {
-            console.error("Failed to send message:", result);
-        }
-    } catch (error) {
-        console.error("Error sending message:", error);
-    }
+    set(reference, {
+        name: userName,
+        message: userMessage,
+        dtime: new Intl.DateTimeFormat("id-ID", {
+            timeZone: "Asia/Makassar",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        }).format(new Date()).replace(",", "")
+    });
+    document.getElementById("name").value = "";
+    document.getElementById("message").value = "";
 }
 
-document.getElementById("message-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    if (name && message) {
-        sendMessage(name, message);
-        document.getElementById("name").value = "";
-        document.getElementById("message").value = "";
+onChildAdded(messagesForCouple, (msg) => {
+    const chatBox = document.getElementById("chat-box");
+    var kname = "";
+    var kmsg = "";
+    var kdtime = "";
+    msg.forEach(element => {
+        const messageObj = element.val();
+        if (element.key == "dtime") {
+            kdtime = element.val();
+        } else if (element.key == "message") {
+            kmsg = element.val();
+        } else if (element.key == "name") {
+            kname = element.val();
+        }
+    });
+    console.log("name: " + kname + " message: " + kmsg + " time: " + kdtime);
+    if (kname != "" && kmsg != "" && kdtime != ""){
+        messageCount++;
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.innerHTML = `
+            <h4>${kname}</h4>
+            <p>${kmsg}</p>
+            <time>${kdtime}</time>
+        `;
+        chatBox.appendChild(messageElement);
+        const mcount = document.getElementById("message-count");
+        mcount.innerText = messageCount + " Pesan & Doa";
     }
+}, {
+    onlyOnce: false
 });
 
-async function loadMessages() {
-    const url = "https://103.165.135.133:4432/queryJsonDatabase?srjy_msg";
-    const requestData = {
-        secret: "none"
-    };
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": accessToken
-            },
-            body: JSON.stringify(requestData),
-            mode: 'cors',
-            credentials: 'include'
-        });
-        const result = await response.json();
-
-        if (result.status === "success") {
-            const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML = "";
-
-            result.data.forEach(msg => {
-                const messageElement = document.createElement("div");
-                messageElement.classList.add("message");
-
-                messageElement.innerHTML = `
-                    <h4>${msg.name}</h4>
-                    <p>${msg.message}</p>
-                    <time>${msg.dtime}</time>
-                `;
-
-                chatBox.appendChild(messageElement);
-            });
-            console.log("Messages loaded successfully.");
-        } else {
-            console.error("Failed to load messages:", result);
-        }
-    } catch (error) {
-        console.error("Error loading messages:", error);
-    }
-}
-
-login();
+document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector("#sendButton");
+    button.addEventListener("click", sendMessage);
+});
