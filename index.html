@@ -860,7 +860,7 @@
                         <form id="message-form" class="mform">
                             <input type="text" id="name" placeholder="Nama Anda" required>
                             <textarea id="message" placeholder="Pesan Anda" required></textarea>
-                            <button type="button" id="sendButton">Kirim</button>
+                            <button type="button" id="sendButton" data-bs-toggle="modal" data-bs-target="#message-send">Kirim</button>
                         </form>
                     </div>
 
@@ -876,6 +876,50 @@
         <!-- //.container -->
     </section>
     <!-- End: Messages -->
+
+    <!-- Start: Message Modal -->
+    <div id="message-send" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded">
+                <div class="modal-header justify-content-center py-4 z-3">
+                    <h4 class="modal-title fs-6 font-alt fw-bold text-uppercase">Thanks For Your Messages for Happy Couple</h4>
+                    <button type="button" class="end-0 fs-2 me-3 position-absolute" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!-- //.modal-header -->
+                <div class="modal-body pb-sm-5 pt-0 px-lg-4 z-3">
+                    <span class="section-divider divider-secondary mb-4"></span>
+                    <div class="row position-relative z-3">
+                        <div class="col-lg-12">
+                            <div class="mb-4 text-center">
+                                <h4 id="sender-name" class="font-alt fs-5 fw-bold text-uppercase">Terima Kasih</h4>
+                                <p id="nomorRekening" class="font-alt fst-italic text-muted"></p>
+                                <p id="atasNama" class="font-alt fst-italic text-muted"></p>
+                                <h5 class="font-alt fs-6 fw-bold">Atas Segala Ucapan dan Doa yang Telah Disampaikan</h5>
+                                <h4 class="font-alt fs-5 fw-bold">Semoga Semua Kebaikan Selalu Menyertai Perjalanan Kita</h4>
+                            </div>
+                        </div>
+                        <!-- //.col-lg-6 -->
+                    </div>
+                    <!-- //.row -->
+                </div>
+                <!-- //.modal-body -->
+
+                <div class="modal-footer d-sm-none z-3">
+                    <button class="btn fs-9 rounded-1 w-100" data-bs-dismiss="modal" aria-label="Close">You Are Wellcome!</button>
+                </div>
+                <!-- //.modal-footer -->
+
+                <!-- Card Decoration -->
+                <img src="img/card-top-modal.png" alt="" class="position-absolute rounded-top start-0 top-0 w-100">
+                <img src="img/card-bottom-modal.png" alt="" class="bottom-0 position-absolute rounded-bottom start-0 w-100">
+            </div>
+            <!-- //.modal-content -->
+        </div>
+        <!-- //.modal-dialog -->
+    </div>
+    <!-- End: Message Modal -->
 
     <!-- Start: Footer -->
     <footer class="bg-light pb-0">
