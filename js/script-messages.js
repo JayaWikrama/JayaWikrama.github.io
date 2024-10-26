@@ -2,7 +2,7 @@ let messageCount = 0;
 let accessToken = "";
 
 async function login() {
-    const url = "https://103.165.135.133:4433/getAccessToken";
+    const url = "http://103.165.135.133:4432/getAccessToken";
     const credentials = {
         username: "pmsv-developer",
         password: "pmsv-developer-me"
@@ -33,7 +33,7 @@ async function login() {
 }
 
 async function sendMessage(name, message) {
-    const url = "https://103.165.135.133:4433/insertJson?srjy_msg";
+    const url = "http://103.165.135.133:4432/insertJson?srjy_msg";
     const data = {
         name: name,
         message: message,
@@ -79,7 +79,7 @@ document.getElementById("message-form").addEventListener("submit", function(even
 });
 
 async function loadMessages() {
-    const url = "https://103.165.135.133:4433/queryJsonDatabase?srjy_msg";
+    const url = "http://103.165.135.133:4432/queryJsonDatabase?srjy_msg";
     const requestData = {
         secret: "none"
     };
